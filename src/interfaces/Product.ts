@@ -1,9 +1,12 @@
+import { BrandInterface } from "./Brand";
+
 export interface ProductInterface {
   id: string;
   name: string;
-  brand: string;
+  brand: BrandInterface;
   price: number;
   description: string;
   stock: number;
-  imagen: string;
+  image: string;
+  // category: string[];
 }

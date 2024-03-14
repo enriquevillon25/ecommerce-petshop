@@ -1,26 +1,12 @@
-import React from "react";
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
-
-import { db } from "../config";
 import { ProductInterface } from "../interfaces/Product";
+import { IData } from "./interfaces/IData";
+import { getFormatDocs } from "./FirebaseService";
 
-interface HttpClient {
-  get(): Promise<any>;
-}
-export class ProductService implements HttpClient {
+export class ProductService implements IData<ProductInterface> {
   private path: string = "products";
-  async get(): Promise<any> {
-    const foodRef = collection(db, this.path);
-    return (await getDocs(foodRef)).docs.map((value) => ({
-      ...value.data(),
-      id: value.id,
-    }));
+
+  async getAll(): Promise<ProductInterface[]> {
+    const products = await getFormatDocs<ProductInterface>(this.path);
+    return products;
   }
 }
