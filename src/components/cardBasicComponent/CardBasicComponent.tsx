@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -13,12 +14,14 @@ interface CardCBasicInterface {
   image: string;
   price: number;
   onClick(): void;
+  inCart: number;
 }
 export const CardBasicComponent = ({
   name,
   image,
   price,
   onClick,
+  inCart,
 }: CardCBasicInterface) => {
   return (
     <Card>
@@ -40,7 +43,11 @@ export const CardBasicComponent = ({
         <Button
           variant="contained"
           onClick={onClick}
-          sx={{ width: "100%", background: "#181D1C", borderColor: "#181D1C" }}
+          sx={{
+            width: "100%",
+            background: "#181D1C",
+            borderColor: "#181D1C",
+          }}
         >
           Add
         </Button>

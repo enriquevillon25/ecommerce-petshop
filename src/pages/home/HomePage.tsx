@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { ProductService } from "../../services/ProductService";
 import { ProductInterface } from "../../interfaces/Product";
-import { BrandService } from "../../services/BrandService";
-import { BrandInterface } from "../../interfaces/Brand";
 import { useProduct } from "../../hooks/useProduct";
-import { useCategorie } from "../../hooks/useCategorie";
 import { CardBasicComponent } from "../../components/cardBasicComponent/CardBasicComponent";
-import { useBrand } from "../../hooks/useBrand";
 import { image } from "../../assets/image";
+import { useShoppingCart } from "../../hooks/useShoppingCart";
+import { useEffect } from "react";
+import { ShoppingCartDrawerComponent } from "../../components/shoppingCartDrawerComponent/ShoppingCartDrawerComponent";
 
 export const HomePage = () => {
   const { products } = useProduct();
-  const { categories } = useCategorie();
-  const { brands } = useBrand();
+  const { addProductCart, productsCart, showDrawerCart, toggleDrawerCart } =
+    useShoppingCart();
+
   useEffect(() => {
-    console.log("brands", products);
-  }, [products]);
+    console.log("productsCart", productsCart);
+  }, []);
 
   return (
     <div>
-      <img src={image} style={{ objectFit: "revert", height: "400px" }} />
+      <img
+        src={image}
+        style={{ objectFit: "revert", height: "10%", width: "100%" }}
+      />
       <div
         style={{
           display: "grid",
@@ -35,10 +36,15 @@ export const HomePage = () => {
               image={product.image}
               name={product.name}
               price={product.price}
-              onClick={() => {}}
+              inCart={1}
+              onClick={toggleDrawerCart}
             />
           ))}
       </div>
+      <ShoppingCartDrawerComponent
+        open={showDrawerCart}
+        onClose={toggleDrawerCart}
+      />
     </div>
   );
 };

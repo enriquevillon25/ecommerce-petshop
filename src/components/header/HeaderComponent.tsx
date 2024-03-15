@@ -121,7 +121,7 @@ export const HeaderComponent = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", gap: 24 } }}>
-            <Tooltip title={`See Cart`}>
+            <Tooltip title={`View Cart`}>
               <IconButton onClick={() => {}} sx={{ p: 0 }}>
                 <ShoppingCart />
               </IconButton>
