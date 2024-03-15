@@ -7,6 +7,7 @@ import { useProduct } from "../../hooks/useProduct";
 import { useCategorie } from "../../hooks/useCategorie";
 import { CardBasicComponent } from "../../components/cardBasicComponent/CardBasicComponent";
 import { useBrand } from "../../hooks/useBrand";
+import { image } from "../../assets/image";
 
 export const HomePage = () => {
   const { products } = useProduct();
@@ -17,23 +18,27 @@ export const HomePage = () => {
   }, [products]);
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr 1fr",
-        margin: "40px",
-        gap: "25px",
-      }}
-    >
-      {products &&
-        products.map((product: ProductInterface) => (
-          <CardBasicComponent
-            key={product.id}
-            image={product.image}
-            name={product.name}
-            onClick={() => {}}
-          />
-        ))}
+    <div>
+      <img src={image} style={{ objectFit: "revert", height: "400px" }} />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          margin: "40px",
+          gap: "25px",
+        }}
+      >
+        {products &&
+          products.map((product: ProductInterface) => (
+            <CardBasicComponent
+              key={product.id}
+              image={product.image}
+              name={product.name}
+              price={product.price}
+              onClick={() => {}}
+            />
+          ))}
+      </div>
     </div>
   );
 };
