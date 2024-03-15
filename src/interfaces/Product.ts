@@ -3,7 +3,7 @@ import { BrandInterface } from "./Brand";
 export interface ProductInterface {
   id: string;
   name: string;
-  brand: BrandInterface;
+  brand: any;
   price: number;
   description: string;
   stock: number;

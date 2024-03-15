@@ -6,7 +6,9 @@ export async function getFormatDocs<T>(path: string): Promise<T[]> {
   const querySnapshot = await getDocs(ref);
   const documents = querySnapshot.docs.map((doc) => ({
     id: doc.id,
-    ...(doc.data() as Omit<T, "id">),
+    ...(doc.data() as Omit<T, "id" | "brand">),
   }));
   return documents as T[];
 }
+
+// brand: (await getDoc(doc.data().brand)).data(),

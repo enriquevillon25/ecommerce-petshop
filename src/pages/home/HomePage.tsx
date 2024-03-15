@@ -3,32 +3,37 @@ import { ProductService } from "../../services/ProductService";
 import { ProductInterface } from "../../interfaces/Product";
 import { BrandService } from "../../services/BrandService";
 import { BrandInterface } from "../../interfaces/Brand";
+import { useProduct } from "../../hooks/useProduct";
+import { useCategorie } from "../../hooks/useCategorie";
+import { CardBasicComponent } from "../../components/cardBasicComponent/CardBasicComponent";
+import { useBrand } from "../../hooks/useBrand";
 
 export const HomePage = () => {
-  const productService = new ProductService();
-  const brandService = new BrandService();
-  const [products, setProducts] = useState<ProductInterface[]>();
-  const [brands, setBrands] = useState<BrandInterface[]>();
-
+  const { products } = useProduct();
+  const { categories } = useCategorie();
+  const { brands } = useBrand();
   useEffect(() => {
-    (async () => {
-      const products = await productService.getAll();
-      setProducts(products);
-      const brands = await brandService.getAll();
-      setBrands(brands);
-    })();
-  }, []);
+    console.log("brands", products);
+  }, [products]);
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        margin: "40px",
+        gap: "25px",
+      }}
+    >
       {products &&
-        products.map((value: ProductInterface) => (
-          <div key={value.id}>
-            <h4>{value.name}</h4>
-            <img src={value.image} style={{ width: "100px", height: "50px" }} />
-          </div>
+        products.map((product: ProductInterface) => (
+          <CardBasicComponent
+            key={product.id}
+            image={product.image}
+            name={product.name}
+            onClick={() => {}}
+          />
         ))}
-      {brands && brands.map((brand: BrandInterface) => <h2>{brand.name}</h2>)}
     </div>
   );
 };

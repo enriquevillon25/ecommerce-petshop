@@ -16,9 +16,24 @@ import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import { useCategorie } from "../../hooks/useCategorie";
+import { CategorieInterface } from "../../interfaces/Categorie";
 
 export const HeaderComponent = () => {
   const pages = ["About", "Products"];
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const { categories } = useCategorie();
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAuth(event.target.checked);
+  // };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
   return (
     <AppBar position="static" sx={{ background: "WHITE" }}>
       <Container maxWidth="xl">
@@ -68,19 +83,40 @@ export const HeaderComponent = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => console.log("page")}
-                sx={{
-                  my: 2,
-                  color: "#181D1C",
-                  display: "block",
-                  fontWeight: 700,
-                  fontFamily: "monospace",
-                }}
-              >
-                {page}
-              </Button>
+              <>
+                <Button
+                  key={page}
+                  onClick={handleMenu}
+                  sx={{
+                    my: 2,
+                    color: "#181D1C",
+                    display: "block",
+                    fontWeight: 700,
+                    fontFamily: "monospace",
+                  }}
+                >
+                  {page}
+                </Button>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {categories?.map((categorie: CategorieInterface) => (
+                    <MenuItem onClick={handleClose}>{categorie.name}</MenuItem>
+                  ))}
+                </Menu>
+              </>
             ))}
           </Box>
 
