@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductInterface } from "../interfaces/Product";
+import { ProductCartInterface } from "../interfaces/ProductCart";
 
 interface ShoppinCartInterface {
   productsCart: any[];
@@ -7,13 +8,16 @@ interface ShoppinCartInterface {
 }
 
 export const useShoppingCart = () => {
-  const [productsCart, setProductsCart] = useState<ProductInterface[]>([]);
+  const [productsCart, setProductsCart] = useState<ProductCartInterface[]>([]);
   const [showDrawerCart, setShowDrawerCart] = useState<boolean>(false);
+  useEffect(() => {
+    console.log("product cart", productsCart);
+  }, []);
 
-  const addProductCart = (product: ProductInterface) => {
+  const addProductCart = (product: ProductCartInterface) => {
     const newShoppingCart = [...productsCart, product];
-    console.log("new shopping cart", newShoppingCart);
     setProductsCart(newShoppingCart);
+    toggleDrawerCart();
   };
 
   const toggleDrawerCart = () => setShowDrawerCart(!showDrawerCart);

@@ -14,14 +14,12 @@ interface CardCBasicInterface {
   image: string;
   price: number;
   onClick(): void;
-  inCart: number;
 }
 export const CardBasicComponent = ({
   name,
   image,
   price,
   onClick,
-  inCart,
 }: CardCBasicInterface) => {
   return (
     <Card>

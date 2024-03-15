@@ -3,8 +3,9 @@ import { useProduct } from "../../hooks/useProduct";
 import { CardBasicComponent } from "../../components/cardBasicComponent/CardBasicComponent";
 import { image } from "../../assets/image";
 import { useShoppingCart } from "../../hooks/useShoppingCart";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { ShoppingCartDrawerComponent } from "../../components/shoppingCartDrawerComponent/ShoppingCartDrawerComponent";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 export const HomePage = () => {
   const { products } = useProduct();
@@ -13,7 +14,9 @@ export const HomePage = () => {
 
   useEffect(() => {
     console.log("productsCart", productsCart);
-  }, []);
+  }, [productsCart]);
+
+  const value = useContext(ShoppingCartContext);
 
   return (
     <div>
@@ -36,14 +39,21 @@ export const HomePage = () => {
               image={product.image}
               name={product.name}
               price={product.price}
-              inCart={1}
-              onClick={toggleDrawerCart}
+              onClick={() =>
+                addProductCart({
+                  id: product.id,
+                  quantity: 1,
+                  image: product.image,
+                  price: product.price,
+                })
+              }
             />
           ))}
       </div>
       <ShoppingCartDrawerComponent
         open={showDrawerCart}
         onClose={toggleDrawerCart}
+        productsCart={productsCart}
       />
     </div>
   );
