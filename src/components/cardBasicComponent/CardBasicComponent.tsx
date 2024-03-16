@@ -45,6 +45,16 @@ export const CardBasicComponent = ({
             width: "100%",
             background: "#181D1C",
             borderColor: "#181D1C",
+            "&:active": {
+              boxShadow: "none",
+              backgroundColor: "#0062cc",
+              borderColor: "#005cbf",
+            },
+            "&:hover": {
+              backgroundColor: "#0069d9",
+              borderColor: "#0062cc",
+              boxShadow: "none",
+            },
           }}
         >
           Add
