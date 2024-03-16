@@ -1,7 +1,7 @@
-import { ProductCart } from "./ProductCart";
+import { ProductCartInterface } from "./ProductCart";
 
 export interface ShoppingCart {
   id: string;
-  productsCart: ProductCart[];
+  productsCart: ProductCartInterface[];
   totalPrice: number;
 }

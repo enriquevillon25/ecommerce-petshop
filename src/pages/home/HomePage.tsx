@@ -9,14 +9,13 @@ import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 export const HomePage = () => {
   const { products } = useProduct();
-  const { addProductCart, productsCart, showDrawerCart, toggleDrawerCart } =
-    useShoppingCart();
-
-  useEffect(() => {
-    console.log("productsCart", productsCart);
-  }, [productsCart]);
-
-  const value = useContext(ShoppingCartContext);
+  const {
+    addProductCart,
+    productsCart,
+    showDrawerCart,
+    toggleDrawerCart,
+    totalPrice,
+  } = useShoppingCart();
 
   return (
     <div>
@@ -45,6 +44,7 @@ export const HomePage = () => {
                   quantity: 1,
                   image: product.image,
                   price: product.price,
+                  name: product.name,
                 })
               }
             />
@@ -54,6 +54,7 @@ export const HomePage = () => {
         open={showDrawerCart}
         onClose={toggleDrawerCart}
         productsCart={productsCart}
+        totalPrice={productsCart.length > 0 ? totalPrice() : null}
       />
     </div>
   );
