@@ -10,13 +10,6 @@ interface ShoppinCartInterface {
 export const useShoppingCart = () => {
   const [productsCart, setProductsCart] = useState<ProductCartInterface[]>([]);
   const [showDrawerCart, setShowDrawerCart] = useState<boolean>(false);
-  useEffect(() => {
-    console.log("product cart", productsCart);
-    if (productsCart.length > 1) {
-      console.log("totalPrice", totalPrice());
-    }
-  }, [productsCart]);
-
   const addProductCart = (product: ProductCartInterface) => {
     const isValid = productsCart.some(
       (productsCart) => productsCart.id == product.id

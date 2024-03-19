@@ -23,6 +23,7 @@ export const HomePage = () => {
         src={image}
         style={{ objectFit: "revert", height: "10%", width: "100%" }}
       />
+      <h2> {"Hola Enrique"} </h2>
       <div
         style={{
           display: "grid",
