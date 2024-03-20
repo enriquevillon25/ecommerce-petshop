@@ -42,13 +42,17 @@ export const HeaderComponent = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ background: "white" }}>
+    <AppBar position="static" sx={{ background: "white" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon
             sx={{
               display: { xs: "none", md: "flex", color: "#181D1C" },
               mr: 1,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              navigate("/", { replace: true });
             }}
           />
           <Typography
@@ -64,6 +68,9 @@ export const HeaderComponent = () => {
               letterSpacing: ".3rem",
               color: "#181D1C",
               textDecoration: "none",
+            }}
+            onClick={() => {
+              navigate("/", { replace: true });
             }}
           >
             DOG
@@ -135,7 +142,12 @@ export const HeaderComponent = () => {
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", gap: 24 } }}>
             <Tooltip title={`View Cart`}>
-              <IconButton onClick={() => {}} sx={{ p: 0 }}>
+              <IconButton
+                onClick={() => {
+                  navigate("/shopping-cart", { replace: true });
+                }}
+                sx={{ p: 0 }}
+              >
                 <ShoppingCart />
               </IconButton>
             </Tooltip>

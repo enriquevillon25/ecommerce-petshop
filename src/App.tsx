@@ -7,6 +7,7 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { FooterComponent } from "./components/footerComponent/FooterComponent";
 import { ContactPage } from "./pages/contact/ContactPage";
 import { AboutPage } from "./pages/about/AboutPage";
+import { ShoppingCart } from "./pages/shoppingCart/ShoppingCart";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route Component={ProductsPage} path="/products" />
           <Route Component={ContactPage} path="/contact" />
           <Route Component={AboutPage} path="/about" />
+          <Route Component={ShoppingCart} path="/shopping-cart" />
         </Routes>
         <FooterComponent />
       </BrowserRouter>
