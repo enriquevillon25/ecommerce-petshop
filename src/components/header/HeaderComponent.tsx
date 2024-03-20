@@ -15,27 +15,34 @@ import {
 import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useCategorie } from "../../hooks/useCategorie";
 import { CategorieInterface } from "../../interfaces/Categorie";
+import { Search } from "@mui/icons-material";
 
 export const HeaderComponent = () => {
-  const pages = ["About", "Products"];
+  const pages = [
+    { title: "Products", url: "/products" },
+    { title: "Nosotros", url: "/about" },
+    { title: "Contáctanos", url: "/contact" },
+    "Nosotros",
+    "Contáctanos",
+  ];
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const navigate = useNavigate();
   const { categories } = useCategorie();
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setAuth(event.target.checked);
-  // };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   return (
-    <AppBar position="static" sx={{ background: "WHITE" }}>
+    <AppBar position="fixed" sx={{ background: "white" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon
@@ -80,13 +87,19 @@ export const HeaderComponent = () => {
             </IconButton>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+          <Search></Search>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+              marginRight: "2%",
+            }}
+          >
+            {pages.map((page: any) => (
               <>
                 <Button
-                  key={page}
-                  onClick={handleMenu}
+                  onClick={() => navigate(`${page.url}`, { replace: true })}
                   sx={{
                     my: 2,
                     color: "#181D1C",
@@ -95,7 +108,7 @@ export const HeaderComponent = () => {
                     fontFamily: "monospace",
                   }}
                 >
-                  {page}
+                  {page.title}
                 </Button>
                 <Menu
                   id="menu-appbar"
