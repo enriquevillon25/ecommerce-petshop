@@ -1,16 +1,10 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
-export const ShoppingCartContext = createContext({});
-
-const defaultValue = {
-  id: "",
-  productsCart: [],
-  totalPrice: 0,
-};
+const ShoppingCartContext = createContext(undefined);
 
 export const ShoppingCartProvider = ({ children }: any) => {
   return (
-    <ShoppingCartContext.Provider value={defaultValue}>
+    <ShoppingCartContext.Provider value={undefined}>
       {children}
     </ShoppingCartContext.Provider>
   );
