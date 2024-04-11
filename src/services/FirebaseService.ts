@@ -10,5 +10,3 @@ export async function getFormatDocs<T>(path: string): Promise<T[]> {
   }));
   return documents as T[];
 }
-
-// brand: (await getDoc(doc.data().brand)).data(),

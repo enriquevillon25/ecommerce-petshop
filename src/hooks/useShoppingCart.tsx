@@ -10,8 +10,9 @@ interface ShoppinCartInterface {
 export const useShoppingCart = () => {
   const [productsCart, setProductsCart] = useState<ProductCartInterface[]>([]);
   const [showDrawerCart, setShowDrawerCart] = useState<boolean>(false);
+
   const addProductCart = (product: ProductCartInterface) => {
-    const isValid = productsCart.some(
+    const productInCart = productsCart.some(
       (productsCart) => productsCart.id == product.id
     );
     const newProductsCart = productsCart.map(
@@ -26,7 +27,9 @@ export const useShoppingCart = () => {
         return productCart;
       }
     );
-    const products = isValid ? newProductsCart : [...productsCart, product];
+    const products = productInCart
+      ? newProductsCart
+      : [...productsCart, product];
     setProductsCart(products);
     toggleDrawerCart();
   };

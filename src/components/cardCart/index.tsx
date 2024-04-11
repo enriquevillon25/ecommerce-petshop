@@ -16,7 +16,7 @@ interface CardCBasicInterface {
   quantity: number;
   onClick(): void;
 }
-export const CardCardComponent = ({
+export const CardCart = ({
   name,
   image,
   price,

@@ -5,7 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import YoutubeIcon from "@mui/icons-material/YouTube";
 import React from "react";
 
-export const FooterComponent = () => {
+export const Footer = () => {
   return (
     <Box
       sx={{

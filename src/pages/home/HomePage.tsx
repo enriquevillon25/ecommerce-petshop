@@ -1,14 +1,13 @@
 import { ProductInterface } from "../../interfaces/Product";
 import { useProduct } from "../../hooks/useProduct";
-import { CardBasicComponent } from "../../components/cardBasicComponent/CardBasicComponent";
 import { image } from "../../assets/image";
 import { useShoppingCart } from "../../hooks/useShoppingCart";
 import { useContext, useEffect } from "react";
-import { ShoppingCartDrawerComponent } from "../../components/shoppingCartDrawerComponent/ShoppingCartDrawerComponent";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { CardBasic, ShoppingCartDrawer } from "../../components";
 
 export const HomePage = () => {
-  const { products } = useProduct();
+  const { products, getAllProducts } = useProduct();
   const {
     addProductCart,
     productsCart,
@@ -16,6 +15,10 @@ export const HomePage = () => {
     toggleDrawerCart,
     totalPrice,
   } = useShoppingCart();
+
+  useEffect(() => {
+    getAllProducts();
+  }, [getAllProducts]);
 
   return (
     <div>
@@ -34,7 +37,7 @@ export const HomePage = () => {
       >
         {products &&
           products.map((product: ProductInterface) => (
-            <CardBasicComponent
+            <CardBasic
               key={product.id}
               image={product.image}
               name={product.name}
@@ -51,7 +54,7 @@ export const HomePage = () => {
             />
           ))}
       </div>
-      <ShoppingCartDrawerComponent
+      <ShoppingCartDrawer
         open={showDrawerCart}
         onClose={toggleDrawerCart}
         productsCart={productsCart}

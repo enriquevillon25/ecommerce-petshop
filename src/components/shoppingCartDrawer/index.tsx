@@ -1,9 +1,9 @@
 import { Box, Drawer, Typography } from "@mui/material";
 import React from "react";
 import { ProductCartInterface } from "../../interfaces/ProductCart";
-import { CardCardComponent } from "../cardCartComponent/CardCartComponent";
+import { CardCart } from "../cardCart";
 
-export const ShoppingCartDrawerComponent = ({
+export const ShoppingCartDrawer = ({
   open,
   onClose,
   productsCart,
@@ -39,7 +39,7 @@ export const ShoppingCartDrawerComponent = ({
         >
           {productsCart &&
             productsCart.map((product: ProductCartInterface) => (
-              <CardCardComponent
+              <CardCart
                 name={product.name}
                 image={product.image}
                 price={product.price}

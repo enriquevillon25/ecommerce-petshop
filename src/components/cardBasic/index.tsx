@@ -15,7 +15,7 @@ interface CardCBasicInterface {
   price: number;
   onClick(): void;
 }
-export const CardBasicComponent = ({
+export const CardBasic = ({
   name,
   image,
   price,

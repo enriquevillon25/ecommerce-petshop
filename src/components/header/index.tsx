@@ -21,7 +21,7 @@ import { useCategorie } from "../../hooks/useCategorie";
 import { CategorieInterface } from "../../interfaces/Categorie";
 import { Search } from "@mui/icons-material";
 
-export const HeaderComponent = () => {
+export const Header = () => {
   const pages = [
     { title: "Products", url: "/products" },
     { title: "Nosotros", url: "/about" },
