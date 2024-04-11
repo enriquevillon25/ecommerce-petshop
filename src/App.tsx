@@ -1,5 +1,5 @@
 import "./App.css";
-import { HomePage } from "./pages/home/HomePage";
+import { Home } from "./pages/home/Home";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { ProductsPage } from "./pages/products/ProductsPage";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route element={<HomePage />} path="" />
+            <Route element={<Home />} path="" />
             <Route element={<ProductsPage />} path="/products" />
             <Route element={<ContactPage />} path="/contact" />
             <Route element={<AboutPage />} path="/about" />

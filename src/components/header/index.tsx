@@ -73,7 +73,7 @@ export const Header = () => {
               navigate("/", { replace: true });
             }}
           >
-            DOG
+            Mascota Locura
           </Typography>
 
           <Box

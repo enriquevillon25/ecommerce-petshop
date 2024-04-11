@@ -2,11 +2,10 @@ import { ProductInterface } from "../../interfaces/Product";
 import { useProduct } from "../../hooks/useProduct";
 import { image } from "../../assets/image";
 import { useShoppingCart } from "../../hooks/useShoppingCart";
-import { useContext, useEffect } from "react";
-import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { useEffect } from "react";
 import { CardBasic, ShoppingCartDrawer } from "../../components";
 
-export const HomePage = () => {
+export const Home = () => {
   const { products, getAllProducts } = useProduct();
   const {
     addProductCart,
@@ -26,7 +25,6 @@ export const HomePage = () => {
         src={image}
         style={{ objectFit: "revert", height: "10%", width: "100%" }}
       />
-      <h2> {"Hola Enrique"} </h2>
       <div
         style={{
           display: "grid",

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { HomePage } from "./HomePage";
+import { Home } from "./Home";
 
 describe("Home Page Test", () => {
-  const component = render(<HomePage />);
+  const component = render(<Home />);
   it("render component", () => {
     expect(screen.getByText("Hola")).toBeInTheDocument();
   });
