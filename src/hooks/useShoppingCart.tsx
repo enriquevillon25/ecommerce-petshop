@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ProductInterface } from "../interfaces/Product";
 import { ProductCartInterface } from "../interfaces/ProductCart";
+import { ShoppingCartContext } from "../context/ShoppingCartContext";
 
 interface ShoppinCartInterface {
   productsCart: any[];
@@ -8,13 +9,15 @@ interface ShoppinCartInterface {
 }
 
 export const useShoppingCart = () => {
-  const [productsCart, setProductsCart] = useState<ProductCartInterface[]>([]);
   const [showDrawerCart, setShowDrawerCart] = useState<boolean>(false);
+  const { productsCart, setProductsCart } = useContext(ShoppingCartContext);
+
+  const productInCart = (product: ProductCartInterface) =>
+    productsCart.some((productCart) => productCart.id === product.id);
 
   const addProductCart = (product: ProductCartInterface) => {
-    const productInCart = productsCart.some(
-      (productsCart) => productsCart.id == product.id
-    );
+    const inCart = productInCart(product);
+
     const newProductsCart = productsCart.map(
       (productCart: ProductCartInterface) => {
         if (productCart.id === product.id) {
@@ -27,9 +30,7 @@ export const useShoppingCart = () => {
         return productCart;
       }
     );
-    const products = productInCart
-      ? newProductsCart
-      : [...productsCart, product];
+    const products = inCart ? newProductsCart : [...productsCart, product];
     setProductsCart(products);
     toggleDrawerCart();
   };
@@ -42,11 +43,28 @@ export const useShoppingCart = () => {
       .reduce((prevCart, current) => prevCart + current);
   };
 
+  const productLessCart = (product: ProductCartInterface) => {
+    const newProductsCart = productsCart.map(
+      (productCart: ProductCartInterface) => {
+        if (productCart.id === product.id) {
+          return {
+            ...productCart,
+            quantity: productCart.quantity - 1,
+            price: productCart.price - product.price,
+          };
+        }
+        return productCart;
+      }
+    );
+    setProductsCart(newProductsCart);
+  };
+
   return {
     addProductCart,
     productsCart,
     toggleDrawerCart,
     showDrawerCart,
     totalPrice,
+    productLessCart,
   };
 };

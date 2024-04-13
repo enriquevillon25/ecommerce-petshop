@@ -27,7 +27,7 @@ export const CardCart = ({
     <Card
       sx={{
         display: "flex",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
         alignItems: "center",
       }}
     >
@@ -41,16 +41,29 @@ export const CardCart = ({
         sx={{
           display: { sx: "flex" },
           flexDirection: "row",
-          width: "150px",
+          width: "100%",
         }}
       >
-        <CardContent>
-          <Typography variant="h6" textAlign={"center"}>
-            {name}
-          </Typography>
-          <Typography variant="body2" textAlign={"center"}>
-            {quantity}
-          </Typography>
+        <CardContent
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            sx={{
+              display: { sx: "flex" },
+              flexDirection: "column",
+            }}
+          >
+            <Typography variant="h6" textAlign={"center"}>
+              {name}
+            </Typography>
+            <Typography variant="body2" textAlign={"center"}>
+              {quantity}
+            </Typography>
+          </Box>
           <Typography variant="body2" textAlign={"center"}>
             {`$ ${price} `}
           </Typography>
